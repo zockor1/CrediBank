@@ -1,5 +1,6 @@
 package Bean;
 
+import DAOs.UsuarioDAO;
 import Modelo.Usuario;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -17,7 +18,19 @@ public class UserBean implements Serializable {
     public UserBean() {
     }
     
+    public void agregarUsuario(){
+        Usuario usuario = new Usuario(getUs(),getClave(),getNombre());
+        UsuarioDAO usuarioDAO=new UsuarioDAO();
+        usuarioDAO.agregaUsuario(usuario);
+    }
+     
+    public void actualizarUsuario(){
+        Usuario p = new Usuario(getUs(),getClave(),getNombre());
+        UsuarioDAO usuarioDAO=new UsuarioDAO();
+        usuarioDAO.actualizarUsuario(p);
+    }
 
+    
     public String getUs() {
         return us;
     }

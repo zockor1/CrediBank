@@ -16,7 +16,7 @@ import org.hibernate.Transaction;
  *
  * @author Luis
  */
-public class UserDAO {
+public class UsuarioDAO {
     public void agregaUsuario(Usuario usuario){
         Transaction tx=null;
         Session sesion=HibernateUtil.getSessionFactory().openSession();
