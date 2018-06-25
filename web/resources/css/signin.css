@@ -92,3 +92,35 @@ body {
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
 }
+
+.contenedor {
+float: left;
+width: 804px;
+color: white;
+}
+
+.tabla1 {
+float: left;
+width: 400px;
+}
+
+.tabla1 table {
+text-align: center;
+}
+
+.tabla1 table tr td {
+width: 100px
+}
+
+.tabla2 {
+float: left;
+width: 400px;
+}
+
+.tabla2 table {
+text-align: center;
+}
+
+.tabla2 table tr td {
+width: 100px
+}
