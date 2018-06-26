@@ -20,10 +20,11 @@ public class UserBean implements Serializable {
     public UserBean() {
     }
     
-    public void agregarUsuario(){
+    public void agregarUsuario() throws IOException{
         Usuario usuario = new Usuario(getUs(),getClave(),getNombre());
         UsuarioDAO usuarioDAO=new UsuarioDAO();
         usuarioDAO.agregaUsuario(usuario);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("Administrar.xhtml");
     }
      
     public void actualizarUsuario(){
@@ -39,13 +40,13 @@ public class UserBean implements Serializable {
                 this.clave = p.getClave();
                 this.nombre = p.getNombre();
                 this.us = p.getUs();
-                System.out.println(this.clave+ "hola");
                 FacesContext.getCurrentInstance().getExternalContext().redirect("Administrar.xhtml");
         }
         else{
                 this.clave = null;
                 this.nombre = null;
                 this.us = null;
+                FacesContext.getCurrentInstance().getExternalContext().redirect("Registrar.xhtml");
         }
     }
 
