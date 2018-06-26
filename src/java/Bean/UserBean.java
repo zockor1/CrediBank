@@ -2,9 +2,11 @@ package Bean;
 
 import DAOs.UsuarioDAO;
 import Modelo.Usuario;
+import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.faces.context.FacesContext;
 
 
 @Named(value = "userBean")
@@ -29,8 +31,24 @@ public class UserBean implements Serializable {
         UsuarioDAO usuarioDAO=new UsuarioDAO();
         usuarioDAO.actualizarUsuario(p);
     }
-
     
+    public void buscarUsuario() throws IOException{
+        UsuarioDAO usuarioDAO=new UsuarioDAO();
+        Usuario p = usuarioDAO.buscarUsuario(us,clave);
+        if (p != null){
+                this.clave = p.getClave();
+                this.nombre = p.getNombre();
+                this.us = p.getUs();
+                System.out.println(this.clave+ "hola");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("Administrar.xhtml");
+        }
+        else{
+                this.clave = null;
+                this.nombre = null;
+                this.us = null;
+        }
+    }
+
     public String getUs() {
         return us;
     }

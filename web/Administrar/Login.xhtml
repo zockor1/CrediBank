@@ -19,14 +19,13 @@
                         <h:messages errorStyle="color: yellow" infoStyle="color: blue" layout="table"/>
                     </h:panelGroup>
                     <h:outputLabel class="sr-only" value="" for="usuario" />
-                    <h:inputText class="form-control" id="usuario" value="" />
+                    <h:inputText class="form-control" id="usuario" value="#{userBean.us}" />
                     <h:outputLabel class="sr-only" value="" for="clave" />
                     <br />
-                    <h:inputSecret class="form-control" id="clave" value="" />
+                    <h:inputSecret class="form-control" id="clave" value="#{userBean.clave}" />
                 <br />
-                <h:commandLink class="btn btn-lg btn-primary btn-block" action="#{userBean}" onclick="" value="Ingresar" />
+                <h:commandLink class="btn btn-lg btn-primary btn-block" action="#{userBean.buscarUsuario()}" value="Ingresar" />
             </h:form>
         </ui:define>
     </ui:composition>
 </html>
-

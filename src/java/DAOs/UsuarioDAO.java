@@ -70,4 +70,14 @@ public class UsuarioDAO {
         return usuario;
     }
     
+    public Usuario buscarUsuario(String cod,String pass){
+        Transaction tx=null;
+        Session sesion=HibernateUtil.getSessionFactory().openSession();
+        tx=sesion.beginTransaction();
+        Query q = sesion.createQuery("from Usuario where us="+cod+ "and clave = " + pass);
+        Usuario usuario = (Usuario) q.uniqueResult();
+        sesion.flush();
+        sesion.close();
+        return usuario;
+    }
 }
