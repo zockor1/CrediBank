@@ -25,21 +25,20 @@
                 </div>
                 <div class="contenedor">
                     <h:panelGrid columns="2" cellpadding="5" class="tabla1">
-                    <h:outputLabel for="run">Rut</h:outputLabel>
+                    <h:outputLabel for="run">Ingrese un usuario</h:outputLabel>
                     <h:inputText value="#{userBean.us}"></h:inputText>
-                    <h:outputLabel for="nombre">Estado</h:outputLabel>
+                    <h:outputLabel for="nombre">Ingrese la clave</h:outputLabel>
                     <h:inputText value="#{userBean.clave}"></h:inputText>
-                    <h:outputLabel for="fechaNac">Desde</h:outputLabel>
-                    <p:calendar id="button" value="#{postularBean.fecNac}" size="15" showOn="button"></p:calendar>
-                    <h:outputLabel for="fechaNac">Hasta</h:outputLabel>
-                    <p:calendar id="butto" value="#{postularBean.fecNac}" size="15" showOn="button"></p:calendar>
+                    <h:outputLabel for="apelPaterno">Ingrese su nombre</h:outputLabel>
+                    <h:inputText value="#{userBean.nombre}"></h:inputText> 
                 </h:panelGrid>
 
                 </div>
                 <div class="form-signin">
-                    <h:commandButton class="btn btn-lg btn-primary btn-block"  value="Registrarse"></h:commandButton>
+                    <h:commandButton class="btn btn-lg btn-primary btn-block" action="#{userBean.agregarUsuario()}" value="Registrarse"></h:commandButton>
                 </div>
             </h:form>
         </ui:define>
     </ui:composition>
 </html>
+
