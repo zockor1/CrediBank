@@ -2,6 +2,9 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
+        <group/>
+=======
         <group>
             <file>file:/C:/Users/Zockor/Documents/GitHub/CrediBank/CrediBank/web/Postulacion/Postular.xhtml</file>
             <file>file:/C:/Users/Zockor/Documents/GitHub/CrediBank/CrediBank/web/index.xhtml</file>
@@ -10,5 +13,6 @@
             <file>file:/C:/Users/Zockor/Documents/GitHub/CrediBank/CrediBank/src/java/Bean/UserBean.java</file>
             <file>file:/C:/Users/Zockor/Documents/GitHub/CrediBank/CrediBank/src/java/DAOs/UsuarioDAO.java</file>
         </group>
+>>>>>>> afcfd31f495a0f9e6c5dbc73ff4b37fee1e8b082
     </open-files>
 </project-private>
