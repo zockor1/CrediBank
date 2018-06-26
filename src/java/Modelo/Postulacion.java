@@ -30,6 +30,10 @@ public class Postulacion  implements java.io.Serializable {
 
     public Postulacion() {
     }
+    
+    public Postulacion(String rut){
+        this.rut = rut;
+    }
 
 	
     public Postulacion(String rut, String nombre, String apppaterno, Date fecnac, String email, String direccion) {
