@@ -1,6 +1,6 @@
 //validaciones del formulario de postulacion
 function validarForm() {
-    if (validarBlancos()) {
+    if (validarBlancos() && valida_rut()) {
         return true;
     }
     return false;
@@ -28,30 +28,74 @@ function validarBlancos() {
 
 }
 
-function Rut(rut){
- var suma=0;
- var arrRut = rut.split("-");
- var rutSolo = arrRut[0];
- var verif = arrRut[1];
- var continuar = true;
- for(i=2;continuar;i++){
-  suma += (rutSolo%10)*i;
-  rutSolo = parseInt((rutSolo /10));
-  i=(i==7)?1:i;
-  continuar = (rutSolo == 0)?false:true;
- }
- resto = suma%11;
- dv = 11-resto;
- if(dv==10){
-  if(verif.toUpperCase() == 'K')
-   return true;
- }
- else if (dv == 11 && verif == 0)
-  return true;
- else if (dv == verif)
-  return true;
- else
-  return false;
+function valida_rut() {
+        var Objeto = document.getElementById("Form:rut");
+	var tmpstr = "";
+	var intlargo = Objeto.value;
+	if (intlargo.length> 0)
+	{
+		crut = Objeto.value;
+		largo = crut.length;
+		if ( largo <2 )
+		{
+			alert('rut inválido');
+			Objeto.focus();
+			return false;
+		}
+		for ( i=0; i <crut.length ; i++ )
+		if ( crut.charAt(i) !== ' ' && crut.charAt(i) !== '.' && crut.charAt(i) !== '-' )
+		{
+			tmpstr = tmpstr + crut.charAt(i);
+		}
+		rut = tmpstr;
+		crut=tmpstr;
+		largo = crut.length;
+ 
+		if ( largo> 2 )
+			rut = crut.substring(0, largo - 1);
+		else
+			rut = crut.charAt(0);
+ 
+		dv = crut.charAt(largo-1);
+ 
+		if ( rut === null || dv === null )
+		return 0;
+ 
+		var dvr = '0';
+		suma = 0;
+		mul  = 2;
+ 
+		for (i= rut.length-1 ; i>= 0; i--)
+		{
+			suma = suma + rut.charAt(i) * mul;
+			if (mul === 7)
+				mul = 2;
+			else
+				mul++;
+		}
+ 
+		res = suma % 11;
+		if (res===1)
+			dvr = 'k';
+		else if (res===0)
+			dvr = '0';
+		else
+		{
+			dvi = 11-res;
+			dvr = dvi + "";
+		}
+ 
+		if ( dvr !== dv.toLowerCase() )
+		{
+			alert('El Rut Ingreso es Invalido');
+			return false;
+		}
+		return true;
+	}
+}
+
+function validarFecha(){
+    
 }
 
 
