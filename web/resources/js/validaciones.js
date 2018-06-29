@@ -1,6 +1,6 @@
 //validaciones del formulario de postulacion
 function validarForm() {
-    if (validarBlancos() && valida_rut()) {
+    if (validarBlancos() && valida_rut() && valEmail()) {
         return true;
     }
     return false;
@@ -8,6 +8,7 @@ function validarForm() {
 
 
 function validarBlancos() {
+    //Valida los espacios en blancos obligatorios
     var rut    = document.getElementById("Form:rut");
     var nombre = document.getElementById("Form:nombre");
     var apellP = document.getElementById("Form:apellP");
@@ -29,6 +30,7 @@ function validarBlancos() {
 }
 
 function valida_rut() {
+    //Validador RUT chileno, sin formato
         var Objeto = document.getElementById("Form:rut");
 	var tmpstr = "";
 	var intlargo = Objeto.value;
@@ -98,5 +100,37 @@ function validarFecha(){
     
 }
 
+function valNumber(){
+    //Permite solo ingresos de números
+    var key = window.event ? event.keyCode : event.which;
+    if ( key < 48 || key > 57 ) {
+        return false;
+    } else {
+        return true;
+    } 
+}
 
+function valLetter(){
+    //Permite solo ingresos de letras y caracter: (')
+    var key = window.event ? event.keyCode : event.which;
+    if (event.keyCode === 39){
+        return true;
+    } else if ( key < 65 || key > 90 && key < 97 || key > 122 ) {
+        return false;
+    } else {
+        return true;
+    } 
+}
+
+function valEmail() {
+    //Valida el formato del email ingresado
+    var email = document.getElementById("Form:email");
+    var pattern = /^[a-zA-Z0-9\-_]+(\.[a-zA-Z0-9\-_]+)*@[a-z0-9]+(\-[a-z0-9]+)*(\.[a-z0-9]+(\-[a-z0-9]+)*)*\.[a-z]{2,4}$/;
+    if (pattern.test(email.value)) {
+        return true;
+    } else {
+        alert('Formato incorrecto: ' + email.value);
+        return false;
+    }
+}
 

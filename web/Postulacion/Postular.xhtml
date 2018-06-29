@@ -9,6 +9,7 @@
     <ui:composition template="/template_login.xhtml">
         <ui:define name="body">
             <h:outputScript library="js" name="validaciones.js"></h:outputScript>
+            <h:outputScript library="js" name="calendar_es.js"/>
             <h:form id="Form" onsubmit="return validarForm()">
                 <div class="form-signin">
                     <h1>
@@ -21,20 +22,24 @@
                 <div class="contenedor" border="1">
                     <h:panelGrid columns="2" cellpadding="5" class="tabla1" border="1">
                         <h:outputLabel >RUN *</h:outputLabel>
-                        <h:inputText id="rut" value="#{postularBean.rut}"></h:inputText>
+                        <h:inputText id="rut" value="#{postularBean.rut}" onkeypress="return valNumber()" maxlength="9"></h:inputText>
                         <h:outputLabel >Nombre *</h:outputLabel>
-                        <h:inputText id="nombre" value="#{postularBean.nombre}"></h:inputText>
+                        <h:inputText id="nombre" value="#{postularBean.nombre}" onkeypress="return valLetter()"></h:inputText>
                         <h:outputLabel >Apellido P *</h:outputLabel>
-                        <h:inputText id="apellP" value="#{postularBean.apppaterno}"></h:inputText>
+                        <h:inputText id="apellP" value="#{postularBean.apppaterno}" onkeypress="return valLetter()"></h:inputText>
                         <h:outputLabel >Apellido M</h:outputLabel>
-                        <h:inputText value="#{postularBean.appmaterno}"></h:inputText>
+                        <h:inputText value="#{postularBean.appmaterno}" onkeypress="return valLetter()"></h:inputText>
                         <h:outputLabel >Fecha Nacimiento *</h:outputLabel>
                         <p:calendar id="fecnac" value="#{postularBean.fecnac}" 
                                     size="15" 
                                     showOn="button" 
                                     yearRange="1910:2018"
-                                    placeholder="dd/mm/yy"
-                                    navigator="true"></p:calendar>
+                                    placeholder="dd/mm/yyyy"
+                                    maxlength="10"
+                                    navigator="true"
+                                    locale="es">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </p:calendar>
                         <h:outputLabel >Sexo</h:outputLabel>
                         <p:selectOneRadio value="#{postularBean.sexo}">
                             <f:selectItem itemLabel="M" itemValue="M" />
@@ -57,7 +62,7 @@
                     </h:panelGrid>
                     <h:panelGrid columns="2" cellpadding="5" class="tabla2" border="1">
                         <h:outputLabel >Teléfono</h:outputLabel>
-                        <h:inputText value="#{postularBean.telefono}"></h:inputText>
+                        <h:inputText value="#{postularBean.telefono}" onkeypress="return valNumber()"></h:inputText>
                         <h:outputLabel >E-mail *</h:outputLabel>
                         <h:inputText id="email" value="#{postularBean.email}"></h:inputText>
                         <h:outputLabel>Dirección *</h:outputLabel>
