@@ -35,6 +35,15 @@ public class PostularBean implements Serializable {
      private Boolean enfermedad;
      private String estado;
      
+     //Habilitar/Desahibilitar ingreso de Hijos
+     private boolean enabled;
+     public void toggle(){
+         enabled = !enabled;
+     }
+     public boolean isEnabled(){
+         return enabled;
+     }
+     
      
     public PostularBean() {
     }

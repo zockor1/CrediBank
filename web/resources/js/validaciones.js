@@ -1,3 +1,33 @@
+//validaciones del formulario de postulacion
+function validarForm() {
+    if (validarBlancos()) {
+        return true;
+    }
+    return false;
+}
+
+
+function validarBlancos() {
+    var rut    = document.getElementById("Form:rut");
+    var nombre = document.getElementById("Form:nombre");
+    var apellP = document.getElementById("Form:apellP");
+    var fecha  = document.getElementById("Form:fecnac_input");
+    var estado = document.getElementById("Form:estado");
+    var email  = document.getElementById("Form:email");
+    var direc  = document.getElementById("Form:direc");
+    var renta  = document.getElementById("Form:renta");
+    var sueldo = document.getElementById("Form:sueldo");
+
+    if (rut.value === '' || nombre.value === '' || apellP.value === '' || fecha.value === ''
+            || estado.value < 2 || email.value === '' || direc.value === '' || renta.value < 2 
+            || sueldo.value === '') {
+        alert("Los Campos Con (*) Son Obligatorios");
+        return false;
+    }
+    return true;
+
+}
+
 function Rut(rut){
  var suma=0;
  var arrRut = rut.split("-");
@@ -24,43 +54,5 @@ function Rut(rut){
   return false;
 }
 
-function Nombre(nombre)
-{
-    if (nombre.trim().replace(/\s+/gi, ' ').split(' ').length < 4) {
-        return false;
-    }else
-    {
-        return true;
-    }
-}
 
-function codigoPro(codigo)
-{
-    if (codigo < 1) {
-        return false;
-    }else
-    {
-        return true;
-    }
-}
-
-function codigoComuna(codigo)
-{
-    if (codigo < 100 || codigo > 999) {
-        return false;
-    }else
-    {
-        return true;
-    }
-}
-
-function codigoRegion(codigo)
-{
-    if (codigo < 1 || codigo > 15) {
-        return false;
-    }else
-    {
-        return true;
-    }
-}
 
