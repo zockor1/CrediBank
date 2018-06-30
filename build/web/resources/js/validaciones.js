@@ -134,3 +134,23 @@ function valEmail() {
     }
 }
 
+function validarLogin() {
+    if (validarBlancosLogin()) {
+        return true;
+    }
+    return false;
+}
+
+function validarBlancosLogin() {
+    //Valida los espacios en blancos obligatorios
+    var usuario    = document.getElementById("FormLogin:usuario");
+    var pass    = document.getElementById("FormLogin:clave");
+
+    if (usuario.value === '' ||pass.value === '') {
+        alert("Los campos no pueden quedar en blanco");
+        return false;
+    }
+    return true;
+
+}
+
