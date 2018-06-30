@@ -124,3 +124,7 @@ text-align: center;
 .tabla2 table tr td {
 width: 100px
 }
+
+.calendarClass input {
+width: 140px !important   
+}
