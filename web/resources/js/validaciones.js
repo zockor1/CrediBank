@@ -18,10 +18,13 @@ function validarBlancos() {
     var direc  = document.getElementById("Form:direc");
     var renta  = document.getElementById("Form:renta");
     var sueldo = document.getElementById("Form:sueldo");
+    var telefono = document.getElementById("Form:telefono");
+    var comuna = document.getElementById("Form:comuna");
+    var educacion = document.getElementById("Form:educacion");
 
     if (rut.value === '' || nombre.value === '' || apellP.value === '' || fecha.value === ''
             || estado.value < 2 || email.value === '' || direc.value === '' || renta.value < 2 
-            || sueldo.value === '') {
+            || sueldo.value === '' || telefono.value === '' || comuna.value < 1 || educacion.value < 2) {
         alert("Los Campos Con (*) Son Obligatorios");
         return false;
     }

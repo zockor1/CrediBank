@@ -95,13 +95,13 @@ body {
 
 .contenedor {
 float: left;
-width: 804px;
+width: 900px;
 color: white;
 }
 
 .tabla1 {
 float: left;
-width: 400px;
+width: 450px;
 }
 
 .tabla1 table {
@@ -114,7 +114,7 @@ width: 100px
 
 .tabla2 {
 float: left;
-width: 400px;
+width: 450px;
 }
 
 .tabla2 table {
@@ -125,6 +125,30 @@ text-align: center;
 width: 100px
 }
 
+
 .calendarClass input {
 width: 140px !important   
 }
+
+/* mensajes */
+.alert {
+    padding: 10px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 10px;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 12px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+/* CSS Label and Input */

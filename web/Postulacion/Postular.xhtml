@@ -20,14 +20,14 @@
                     <h:link class="button" value="Atras" outcome="/index.xhtml"/>
                 </div>
                 <div class="contenedor">
-                    <h:panelGrid columns="2" cellpadding="5" class="tabla1" columnClasses="border, border" >
+                    <h:panelGrid columns="2" cellpadding="5" class="tabla1">
                         <h:outputLabel style="width: 150px;">RUN *</h:outputLabel>
                         <h:inputText id="rut" value="#{postularBean.rut}" onkeypress="return valNumber()" maxlength="9"></h:inputText>
                         <h:outputLabel >Nombre *</h:outputLabel>
                         <h:inputText id="nombre" value="#{postularBean.nombre}" onkeypress="return valLetter()"></h:inputText>
-                        <h:outputLabel >Apellido P *</h:outputLabel>
+                        <h:outputLabel >Apellido Paterno *</h:outputLabel>
                         <h:inputText id="apellP" value="#{postularBean.apppaterno}" onkeypress="return valLetter()"></h:inputText>
-                        <h:outputLabel >Apellido M</h:outputLabel>
+                        <h:outputLabel >Apellido Materno</h:outputLabel>
                         <h:inputText value="#{postularBean.appmaterno}" onkeypress="return valLetter()"></h:inputText>
                         <h:outputLabel >Fecha Nacimiento *</h:outputLabel>
                         <p:calendar id="fecnac" value="#{postularBean.fecnac}" 
@@ -46,9 +46,9 @@
                             <f:selectItem itemLabel="M" itemValue="M" />
                             <f:selectItem itemLabel="F" itemValue="F" /> 
                         </p:selectOneRadio>
-                        <h:outputLabel >Estado civil *</h:outputLabel>
+                        <h:outputLabel >Estado Civil *</h:outputLabel>
                         <h:selectOneMenu id="estado" value="#{postularBean.estadocivil}">
-                            <f:selectItem itemLabel="Seleccionar" itemValue="1"></f:selectItem>
+                            <f:selectItem itemLabel="Seleccionar Estado Civil" itemValue="1"></f:selectItem>
                             <f:selectItem itemLabel="Soltero" itemValue="2"></f:selectItem>
                             <f:selectItem itemLabel="Casado" itemValue="3"></f:selectItem>
                             <f:selectItem itemLabel="Viudo" itemValue="4"></f:selectItem>
@@ -61,39 +61,42 @@
                         <h:outputLabel >Cantidad</h:outputLabel>
                         <p:spinner id="spinner" value="#{postularBean.hijos}" size="2" min="0" max="15" disabled="#{not postularBean.enabled}" ></p:spinner>          
                     </h:panelGrid>
-                    <h:panelGrid columns="2" cellpadding="5" class="tabla2" columnClasses="border, border">
-                        <h:outputLabel >Teléfono</h:outputLabel>
-                        <h:inputText value="#{postularBean.telefono}" onkeypress="return valNumber()"></h:inputText>
+                    <h:panelGrid columns="2" cellpadding="5" class="tabla2">
+                        <h:outputLabel >Teléfono *</h:outputLabel>
+                        <h:inputText id="telefono" value="#{postularBean.telefono}" onkeypress="return valNumber()"></h:inputText>
                         <h:outputLabel >E-mail *</h:outputLabel>
                         <h:inputText id="email" value="#{postularBean.email}"></h:inputText>
                         <h:outputLabel>Dirección *</h:outputLabel>
                         <h:inputText id="direc" value="#{postularBean.direccion}"></h:inputText>
-                        <h:outputLabel >Comuna</h:outputLabel>
-                        <h:selectOneMenu value="#{postularBean.comuna.idComuna}">
+                        <h:outputLabel >Comuna *</h:outputLabel>
+                        <h:selectOneMenu id="comuna" value="#{postularBean.comuna.idComuna}" style="width: 180px">
+                            <f:selectItem itemLabel="Seleccionar Comúna" itemValue="0"></f:selectItem>
                             <f:selectItems value="#{postularBean.listaComuna()}" var="reg" itemLabel="#{reg.nomComuna}" itemValue="#{reg.idComuna}"></f:selectItems>
                         </h:selectOneMenu>
-                        <h:outputLabel style="height: 29px">Educacion</h:outputLabel>
-                        <h:selectOneMenu  value="#{postularBean.educacion}">
-                            <f:selectItem itemLabel="Seleccionar" itemValue="1"></f:selectItem>
+                        <h:outputLabel style="height: 29px">Educacion *</h:outputLabel>
+                        <h:selectOneMenu id="educacion"  value="#{postularBean.educacion}">
+                            <f:selectItem itemLabel="Seleccionar Educación" itemValue="1"></f:selectItem>
                             <f:selectItem itemLabel="Profesional" itemValue="2"></f:selectItem>
                             <f:selectItem itemLabel="Técnico" itemValue="3"></f:selectItem>
                             <f:selectItem itemLabel="Media" itemValue="4"></f:selectItem>
                             <f:selectItem itemLabel="Basica" itemValue="5"></f:selectItem>
                             <f:selectItem itemLabel="No Posee" itemValue="6"></f:selectItem>
                         </h:selectOneMenu>
-                        <h:outputLabel >Renta *</h:outputLabel>
+                        <h:outputLabel style="height: 32px" >Renta *</h:outputLabel>
                         <h:selectOneMenu id="renta" value="#{postularBean.renta}">
-                            <f:selectItem itemLabel="Seleccionar" itemValue="1"></f:selectItem>
+                            <f:selectItem itemLabel="Seleccionar Tipo Renta" itemValue="1"></f:selectItem>
                             <f:selectItem itemLabel="Fija" itemValue="2"></f:selectItem>
                             <f:selectItem itemLabel="Variable" itemValue="3"></f:selectItem>
                             <f:selectItem itemLabel="Honorarios" itemValue="4"></f:selectItem>
                         </h:selectOneMenu>  
                         <h:outputLabel >Sueldo Liquido *</h:outputLabel>
-                        <h:inputText id="sueldo" value="#{postularBean.sueldoLiquido}"></h:inputText>
+                        <h:inputText id="sueldo" value="#{postularBean.sueldoLiquido}" onkeypress="return valNumber()" maxlength="4"></h:inputText>
                         <h:outputLabel >Enfermedad crónica</h:outputLabel>
-                        <h:selectBooleanCheckbox value="#{postularBean.enfermedad}"> SI </h:selectBooleanCheckbox>
+                        <h:selectBooleanCheckbox value="#{postularBean.enfermedad}">  SI </h:selectBooleanCheckbox>
                     </h:panelGrid>
-                    <h:messages style="color:yellow;margin:20px"/>
+                    <h:panelGrid columns="1" >
+                    <h:messages class="alert closebtn"/>
+                    </h:panelGrid>
                 </div>
                 <div class="form-signin">
                     <h:commandButton class="btn btn-lg btn-primary btn-block" value="Postular" action="#{postularBean.agregarPostulacion()}">   

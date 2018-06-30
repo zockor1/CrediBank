@@ -57,11 +57,11 @@ public class PostularBean implements Serializable {
                 getRenta(), getSueldoLiquido(), getEnfermedad(), getEstado());
         PostularDAO postularDAO = new PostularDAO();
         FacesContext context = FacesContext.getCurrentInstance();
-        if (postularDAO.agregaPostulacion(postulacion)){
-           context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Postulacion ingresada con Exito!", null));
-           //FacesContext.getCurrentInstance().getExternalContext().redirect("../index.xhtml");
-        }else{
-           context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error al Ingresar la Postulacion, compruebe los datos", null));
+        if (postularDAO.agregaPostulacion(postulacion)) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Postulacion ingresada con Exito!", null));
+            //FacesContext.getCurrentInstance().getExternalContext().redirect("../index.xhtml");
+        } else {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ya existe una Postulacion del Cliente :" + postulacion.getRut(), null));
         }
     }
     
