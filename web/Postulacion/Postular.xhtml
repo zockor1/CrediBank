@@ -38,9 +38,8 @@
                                     navigator="true"
                                     locale="es" 
                                     styleClass="calendarClass"
-                                    readonly="true"
-                                    >
-                            <f:convertDateTime pattern=" dd-mm-yyyy " />
+                                    readonly="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
                         </p:calendar>
                         <h:outputLabel >Sexo</h:outputLabel>
                         <p:selectOneRadio value="#{postularBean.sexo}">
@@ -92,8 +91,9 @@
                         <h:outputLabel >Sueldo Liquido *</h:outputLabel>
                         <h:inputText id="sueldo" value="#{postularBean.sueldoLiquido}"></h:inputText>
                         <h:outputLabel >Enfermedad crónica</h:outputLabel>
-                        <h:selectBooleanCheckbox value="#{postularBean.enfermedad}">SI</h:selectBooleanCheckbox>
+                        <h:selectBooleanCheckbox value="#{postularBean.enfermedad}"> SI </h:selectBooleanCheckbox>
                     </h:panelGrid>
+                    <h:messages style="color:yellow;margin:20px"/>
                 </div>
                 <div class="form-signin">
                     <h:commandButton class="btn btn-lg btn-primary btn-block" value="Postular" action="#{postularBean.agregarPostulacion()}">   

@@ -3,11 +3,14 @@ package Bean;
 import DAOs.PostularDAO;
 import Modelo.Comuna;
 import Modelo.Postulacion;
+import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -22,7 +25,7 @@ public class PostularBean implements Serializable {
      private String nombre;
      private String apppaterno;
      private String appmaterno;
-     private Date fecnac;
+     private Date fecnac = new Date();
      private Character sexo;
      private Character estadocivil;
      private Short hijos;
@@ -48,12 +51,18 @@ public class PostularBean implements Serializable {
     public PostularBean() {
     }
     
-    public void agregarPostulacion(){
-        Postulacion postulacion = new Postulacion(getRut(),getComuna(),getNombre(),getApppaterno(),getAppmaterno(),
-        getFecnac(), getSexo(), getEstadocivil(), getHijos(), getTelefono(), getEmail(), getDireccion(), getEducacion()
-                , getRenta(), getSueldoLiquido(), getEnfermedad(), getEstado());
+    public void agregarPostulacion() throws IOException {
+        Postulacion postulacion = new Postulacion(getRut(), getComuna(), getNombre(), getApppaterno(), getAppmaterno(),
+                getFecnac(), getSexo(), getEstadocivil(), getHijos(), getTelefono(), getEmail(), getDireccion(), getEducacion(),
+                getRenta(), getSueldoLiquido(), getEnfermedad(), getEstado());
         PostularDAO postularDAO = new PostularDAO();
-        postularDAO.agregaPostulacion(postulacion);
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (postularDAO.agregaPostulacion(postulacion)){
+           context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Postulacion ingresada con Exito!", null));
+           //FacesContext.getCurrentInstance().getExternalContext().redirect("../index.xhtml");
+        }else{
+           context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error al Ingresar la Postulacion, compruebe los datos", null));
+        }
     }
     
      public void actualizarPostulacion(){

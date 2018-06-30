@@ -3,7 +3,12 @@ package DAOs;
 
 import Modelo.Postulacion;
 import Util.HibernateUtil;
+import static java.awt.SystemColor.window;
+import java.sql.SQLException;
 import java.util.List;
+import javax.validation.ConstraintViolationException;
+import org.hibernate.HibernateException;
+import org.hibernate.JDBCException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -13,16 +18,23 @@ import org.hibernate.Transaction;
  */
 public class PostularDAO {
     
-     public void agregaPostulacion(Postulacion postulacion){
-        Transaction tx=null;
-        Session sesion=HibernateUtil.getSessionFactory().openSession();
-        tx=sesion.beginTransaction();
-        sesion.save(postulacion);
-        sesion.getTransaction().commit();
-        sesion.flush();
-        sesion.close();
+    public boolean agregaPostulacion(Postulacion postulacion) {
+        try {
+
+            Transaction tx = null;
+            Session sesion = HibernateUtil.getSessionFactory().openSession();
+            tx = sesion.beginTransaction();
+            sesion.save(postulacion);
+            sesion.getTransaction().commit();
+            sesion.flush();
+            sesion.close();
+            return true;
+
+        } catch (JDBCException ex) {
+            return false;
+        }
     }
-    
+
                
     public void actualizarPostulacion(Postulacion postulacion){
         Transaction tx=null;
