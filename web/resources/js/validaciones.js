@@ -13,6 +13,26 @@ function validaBuscar(){
     return false;
 }
 
+function validaBuscarFiltro(){
+    if (validaBlancoFiltro() && valida_rut2()) {
+        return true;
+    }
+    return false;
+}
+
+function validaBlancoFiltro(){
+    var rut    = document.getElementById("FormaAdministrar:rut");
+    var estado = document.getElementById("FormaAdministrar:estado");
+    var fechaI  = document.getElementById("FormaAdministrar:fecnin_input");
+    var fechaT = document.getElementById("FormaAdministrar:fecnin_input");
+    
+    if (rut.value === '' || estado.value < 1 || fechaI.value === '' || fechaT.value === '' ) {
+        alert("Los Campos Con (*) Son Obligatorios");
+        return false;
+    }
+    return true;
+}
+
 
 function validarBlancos() {
     //Valida los espacios en blancos obligatorios
@@ -38,6 +58,7 @@ function validarBlancos() {
     return true;
 
 }
+
 
 function valida_rut() {
     //Validador RUT chileno, sin formato
@@ -105,7 +126,74 @@ function valida_rut() {
 		return true;
 	}
 }
-     
+
+function valida_rut2() {
+    //Validador RUT chileno, sin formato
+        var Objeto = document.getElementById("FormaAdministrar:rut");
+	var tmpstr = "";
+	var intlargo = Objeto.value;
+	if (intlargo.length> 0)
+	{
+		crut = Objeto.value;
+		largo = crut.length;
+		if ( largo <2 )
+		{
+			alert('rut inválido');
+			Objeto.focus();
+			return false;
+		}
+		for ( i=0; i <crut.length ; i++ )
+		if ( crut.charAt(i) !== ' ' && crut.charAt(i) !== '.' && crut.charAt(i) !== '-' )
+		{
+			tmpstr = tmpstr + crut.charAt(i);
+		}
+		rut = tmpstr;
+		crut=tmpstr;
+		largo = crut.length;
+ 
+		if ( largo> 2 )
+			rut = crut.substring(0, largo - 1);
+		else
+			rut = crut.charAt(0);
+ 
+		dv = crut.charAt(largo-1);
+ 
+		if ( rut === null || dv === null )
+		return 0;
+ 
+		var dvr = '0';
+		suma = 0;
+		mul  = 2;
+ 
+		for (i= rut.length-1 ; i>= 0; i--)
+		{
+			suma = suma + rut.charAt(i) * mul;
+			if (mul === 7)
+				mul = 2;
+			else
+				mul++;
+		}
+ 
+		res = suma % 11;
+		if (res===1)
+			dvr = 'k';
+		else if (res===0)
+			dvr = '0';
+		else
+		{
+			dvi = 11-res;
+			dvr = dvi + "";
+		}
+ 
+		if ( dvr !== dv.toLowerCase() )
+		{
+			alert('El Rut Ingreso es Invalido');
+			return false;
+		}
+		return true;
+	}
+}
+
 function valNumber(){
     //Permite solo ingresos de números
     var key = window.event ? event.keyCode : event.which;

@@ -9,64 +9,58 @@
     <ui:composition template="/template_login.xhtml">
         <ui:define name="body">
             <h:outputScript library="js" name="validaciones.js"></h:outputScript>
-            <script type="text/javascript">
-                function habilitar(id) {
-                    document.getElementById(id).disabled = false;
-                    return false;
-                }
-            </script>
-            <h:form id="FormaAdministrar" >
+            <h:form id="FormaAdministrar" onsubmit="return validaBuscarFiltro() " >
                 <div class="form-signin">
                     <h1>
-                     <h:outputText class="titulo" value="Buscador de solicitudes"></h:outputText>
+                        <h:outputText class="titulo2" value="Buscador de solicitudes"></h:outputText>
                     </h1>
                 </div>
                 <div>
-                <h:link class="button" value="Atras" outcome="/index.xhtml"/>
+                    <h:link class="button" value="Atras" outcome="/index.xhtml"/>
                 </div>
                 <div class="contenedor" border="1">
-                    <h:panelGrid columns="2" cellpadding="5" class="tabla1" border="1">
+                    <h:panelGrid columns="4" cellpadding="3" class="tablaListado">
                         <h:outputLabel >RUN *</h:outputLabel>
-                        <h:inputText id="rut" value="#{rut}" onkeypress="return valNumber()" maxlength="9"></h:inputText>
-                        <h:outputLabel >Estado de solicitud *</h:outputLabel>
+                        <h:inputText id="rut" value="#{rut}" onkeypress="return valIngresoRut()" maxlength="9"></h:inputText>
+                        <h:outputLabel >Estado solicitud *</h:outputLabel>
                         <h:selectOneMenu id="estado" value="#{estado}">
                             <f:selectItem itemLabel="Seleccionar" itemValue="0"></f:selectItem>
                             <f:selectItem itemLabel="Pendiente" itemValue="Pendiente"></f:selectItem>
-                            <f:selectItem itemLabel="Aprobado" itemValue="2"></f:selectItem>
-                            <f:selectItem itemLabel="Rechazado" itemValue="3"></f:selectItem>
+                            <f:selectItem itemLabel="Aprobado" itemValue="Aprobado"></f:selectItem>
+                            <f:selectItem itemLabel="Rechazado" itemValue="Rechazado"></f:selectItem>
                         </h:selectOneMenu>
                         <h:outputLabel >Desde *</h:outputLabel>
                         <p:calendar id="fecnin" value="#{ini}" 
-                                    size="15" 
+                                    size="9" 
                                     showOn="button" 
                                     yearRange="1910:2018"
                                     placeholder="dd/mm/yyyy"
                                     maxlength="10"
                                     navigator="true"
-                                    locale="es">
-                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    locale="es"
+                                    readonly="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </p:calendar>
                         <h:outputLabel >Hasta *</h:outputLabel>
                         <p:calendar id="fecnfin" value="#{fin}" 
-                                    size="15" 
+                                    size="9" 
                                     showOn="button" 
                                     yearRange="1910:2018"
                                     placeholder="dd/mm/yyyy"
                                     maxlength="10"
                                     navigator="true"
-                                    locale="es">
-                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    locale="es"
+                                    readonly="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </p:calendar>
-                        </h:panelGrid>
+                    </h:panelGrid>
                 </div>
                 <br></br>
                 <div class="form-signin">
                     <h:commandButton class="btn btn-lg btn-primary btn-block"  value="Buscar" action="#{postularBean.buscarPostulacion3(rut,estado,ini,fin)}"></h:commandButton>
-                </div>
-                
-                <h:link class="btn btn-lg btn-primary btn-block" value="Listar Postulaciones" outcome="ListarPostulaciones.xhtml" />
-            
+                    <h:link class="btn btn-lg btn-primary btn-block" value="Listar Todo" outcome="ListarPostulaciones.xhtml" />
+                </div>     
             </h:form>
-             </ui:define>
+        </ui:define>
     </ui:composition>
 </html>
