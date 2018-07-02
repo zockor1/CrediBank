@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template_login.xhtml">
+        <ui:define name="body">
+            <h:outputScript library="js" name="validaciones.js"></h:outputScript>
+            <script type="text/javascript">
+                function habilitar(id) {
+                    document.getElementById(id).disabled = false;
+                    return false;
+                }
+            </script>
+            <h:form id="FormaAdministrar" >
+                <div class="form-signin">
+                    <h1>
+                     <h:outputText class="titulo" value="Buscador de solicitudes"></h:outputText>
+                    </h1>
+                </div>
+                <div>
+                <h:link class="button" value="Atras" outcome="/index.xhtml"/>
+                </div>
+                <div class="contenedor" border="1">
+                    <h:panelGrid columns="2" cellpadding="5" class="tabla1" border="1">
+                        <h:outputLabel >RUN *</h:outputLabel>
+                        <h:inputText id="rut" value="#{rut}" onkeypress="return valNumber()" maxlength="9"></h:inputText>
+                        <h:outputLabel >Estado de solicitud *</h:outputLabel>
+                        <h:selectOneMenu id="estado" value="#{estado}">
+                            <f:selectItem itemLabel="Seleccionar" itemValue="0"></f:selectItem>
+                            <f:selectItem itemLabel="Pendiente" itemValue="Pendiente"></f:selectItem>
+                            <f:selectItem itemLabel="Aprobado" itemValue="2"></f:selectItem>
+                            <f:selectItem itemLabel="Rechazado" itemValue="3"></f:selectItem>
+                        </h:selectOneMenu>
+                        <h:outputLabel >Desde *</h:outputLabel>
+                        <p:calendar id="fecnin" value="#{ini}" 
+                                    size="15" 
+                                    showOn="button" 
+                                    yearRange="1910:2018"
+                                    placeholder="dd/mm/yyyy"
+                                    maxlength="10"
+                                    navigator="true"
+                                    locale="es">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </p:calendar>
+                        <h:outputLabel >Hasta *</h:outputLabel>
+                        <p:calendar id="fecnfin" value="#{fin}" 
+                                    size="15" 
+                                    showOn="button" 
+                                    yearRange="1910:2018"
+                                    placeholder="dd/mm/yyyy"
+                                    maxlength="10"
+                                    navigator="true"
+                                    locale="es">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </p:calendar>
+                        </h:panelGrid>
+                </div>
+                <br></br>
+                <div class="form-signin">
+                    <h:commandButton class="btn btn-lg btn-primary btn-block"  value="Buscar" action="#{postularBean.buscarPostulacion3(rut,estado,ini,fin)}"></h:commandButton>
+                </div>
+                
+                <h:link class="btn btn-lg btn-primary btn-block" value="Listar Postulaciones" outcome="ListarPostulaciones.xhtml" />
+            
+            </h:form>
+             </ui:define>
+    </ui:composition>
+</html>

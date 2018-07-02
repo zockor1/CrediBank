@@ -20,37 +20,38 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class PostularBean implements Serializable {
 
-     private String rut;
-     private Comuna comuna = new Comuna();
-     private String nombre;
-     private String apppaterno;
-     private String appmaterno;
-     private Date fecnac = new Date();
-     private Character sexo;
-     private Character estadocivil;
-     private Short hijos;
-     private String telefono;
-     private String email;
-     private String direccion;
-     private String educacion;
-     private String renta;
-     private Short sueldoLiquido;
-     private Boolean enfermedad;
-     private String estado;
-     
-     //Habilitar/Desahibilitar ingreso de Hijos
-     private boolean enabled;
-     public void toggle(){
-         enabled = !enabled;
-     }
-     public boolean isEnabled(){
-         return enabled;
-     }
-     
-     
+    private String rut;
+    private Comuna comuna = new Comuna();
+    private String nombre;
+    private String apppaterno;
+    private String appmaterno;
+    private Date fecnac = new Date();
+    private Character sexo;
+    private Character estadocivil;
+    private Short hijos;
+    private String telefono;
+    private String email;
+    private String direccion;
+    private String educacion;
+    private String renta;
+    private Short sueldoLiquido;
+    private Boolean enfermedad;
+    private String estado;
+
+    //Habilitar/Desahibilitar ingreso de Hijos
+    private boolean enabled;
+
+    public void toggle() {
+        enabled = !enabled;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
     public PostularBean() {
     }
-    
+
     public void agregarPostulacion() throws IOException {
         Postulacion postulacion = new Postulacion(getRut(), getComuna(), getNombre(), getApppaterno(), getAppmaterno(),
                 getFecnac(), getSexo(), getEstadocivil(), getHijos(), getTelefono(), getEmail(), getDireccion(), getEducacion(),
@@ -59,209 +60,227 @@ public class PostularBean implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         if (postularDAO.agregaPostulacion(postulacion)) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Postulacion ingresada con Exito!", null));
+            //limpiarCampos();
             //FacesContext.getCurrentInstance().getExternalContext().redirect("../index.xhtml");
         } else {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ya existe una Postulacion del Cliente :" + postulacion.getRut(), null));
         }
     }
-    
-     public void actualizarPostulacion() throws IOException{
-        Postulacion postulacion = new Postulacion(getRut(),getComuna(),getNombre(),getApppaterno(),getAppmaterno(),
-        getFecnac(), getSexo(), getEstadocivil(), getHijos(), getTelefono(), getEmail(), getDireccion(), getEducacion()
-                , getRenta(), getSueldoLiquido(), getEnfermedad(), getEstado());
+
+    public void actualizarPostulacion() throws IOException {
+        Postulacion postulacion = new Postulacion(getRut(), getComuna(), getNombre(), getApppaterno(), getAppmaterno(),
+                getFecnac(), getSexo(), getEstadocivil(), getHijos(), getTelefono(), getEmail(), getDireccion(), getEducacion(),
+                 getRenta(), getSueldoLiquido(), getEnfermedad(), getEstado());
         PostularDAO postularDAO = new PostularDAO();
         postularDAO.actualizarPostulacion(postulacion);
         FacesContext.getCurrentInstance().getExternalContext().redirect("ActualizarPostulacion.xhtml");
     }
 
-    public void eliminarPostulacion(){
+    public void eliminarPostulacion() {
         Postulacion postulacion = new Postulacion(getRut());
         PostularDAO postularDAO = new PostularDAO();
         postularDAO.eliminarPostulacion(postulacion);
     }
-    public void eliminarPostulacion2(String rut){
+
+    public void eliminarPostulacion2(String rut) {
         Postulacion postulacion = new Postulacion(rut);
         PostularDAO postularDAO = new PostularDAO();
         postularDAO.eliminarPostulacion(postulacion);
     }
-    
-    public void buscarPostulacion(){
-        PostularDAO postularDAO=new PostularDAO();
+
+    public void buscarPostulacion() {
+        PostularDAO postularDAO = new PostularDAO();
         Postulacion p = postularDAO.buscarPostulacion(rut);
-        if (p != null){
-                rut = p.getRut();
-                comuna = p.getComuna();
-                nombre = p.getNombre();
-                apppaterno = p.getApppaterno();
-                appmaterno = p.getAppmaterno();
-                fecnac = p.getFecnac();
-                sexo = p.getSexo();
-                estadocivil = p.getEstadocivil();
-                hijos = p.getHijos();
-                telefono = p.getTelefono();
-                email = p.getEmail();
-                direccion = p.getDireccion();
-                educacion = p.getEducacion();
-                renta = p.getRenta();
-                sueldoLiquido = p.getSueldoLiquido();
-                enfermedad = p.getEnfermedad();
-                estado = p.getEstado();
-        }else{
-                rut = "";
-                comuna = null;
-                nombre = "";
-                apppaterno = "";
-                appmaterno = "";
-                fecnac = null;
-                sexo = ' ';
-                estadocivil = ' ';
-                hijos = 0;
-                telefono = "";
-                email = "";
-                direccion = "";
-                educacion = "";
-                renta = "";
-                sueldoLiquido = 0;
-                enfermedad = false;
-                estado = null;
+        if (p != null) {
+            rut = p.getRut();
+            comuna = p.getComuna();
+            nombre = p.getNombre();
+            apppaterno = p.getApppaterno();
+            appmaterno = p.getAppmaterno();
+            fecnac = p.getFecnac();
+            sexo = p.getSexo();
+            estadocivil = p.getEstadocivil();
+            hijos = p.getHijos();
+            telefono = p.getTelefono();
+            email = p.getEmail();
+            direccion = p.getDireccion();
+            educacion = p.getEducacion();
+            renta = p.getRenta();
+            sueldoLiquido = p.getSueldoLiquido();
+            enfermedad = p.getEnfermedad();
+            estado = p.getEstado();
+        } else {
+            rut = "";
+            nombre = "";
+            apppaterno = "";
+            appmaterno = "";
+            fecnac = null;
+            sexo = ' ';
+            estadocivil = ' ';
+            hijos = 0;
+            telefono = "";
+            email = "";
+            direccion = "";
+            educacion = "";
+            renta = "";
+            sueldoLiquido = null;
+            enfermedad = false;
+            estado = null;
         }
     }
-    
-    public void buscarPostulacion2(String rut1) throws IOException{
-        PostularDAO postularDAO=new PostularDAO();
+
+    public void buscarPostulacion2(String rut1) throws IOException {
+        PostularDAO postularDAO = new PostularDAO();
         Postulacion p = postularDAO.buscarPostulacion(rut1);
-        if (p != null){
-                rut = p.getRut();
-                comuna = p.getComuna();
-                nombre = p.getNombre();
-                apppaterno = p.getApppaterno();
-                appmaterno = p.getAppmaterno();
-                fecnac = p.getFecnac();
-                sexo = p.getSexo();
-                estadocivil = p.getEstadocivil();
-                hijos = p.getHijos();
-                telefono = p.getTelefono();
-                email = p.getEmail();
-                direccion = p.getDireccion();
-                educacion = p.getEducacion();
-                renta = p.getRenta();
-                sueldoLiquido = p.getSueldoLiquido();
-                enfermedad = p.getEnfermedad();
-                estado = p.getEstado();
-                FacesContext.getCurrentInstance().getExternalContext().redirect("ActualizarPostulacion.xhtml");
-        }else{
-                rut = "";
-                comuna = null;
-                nombre = "";
-                apppaterno = "";
-                appmaterno = "";
-                fecnac = null;
-                sexo = ' ';
-                estadocivil = ' ';
-                hijos = 0;
-                telefono = "";
-                email = "";
-                direccion = "";
-                educacion = "";
-                renta = "";
-                sueldoLiquido = 0;
-                enfermedad = false;
-                estado = null;
+        if (p != null) {
+            rut = p.getRut();
+            comuna = p.getComuna();
+            nombre = p.getNombre();
+            apppaterno = p.getApppaterno();
+            appmaterno = p.getAppmaterno();
+            fecnac = p.getFecnac();
+            sexo = p.getSexo();
+            estadocivil = p.getEstadocivil();
+            hijos = p.getHijos();
+            telefono = p.getTelefono();
+            email = p.getEmail();
+            direccion = p.getDireccion();
+            educacion = p.getEducacion();
+            renta = p.getRenta();
+            sueldoLiquido = p.getSueldoLiquido();
+            enfermedad = p.getEnfermedad();
+            estado = p.getEstado();
+            FacesContext.getCurrentInstance().getExternalContext().redirect("ActualizarPostulacion.xhtml");
+        } else {
+            rut = "";
+            nombre = "";
+            apppaterno = "";
+            appmaterno = "";
+            fecnac = null;
+            sexo = ' ';
+            estadocivil = ' ';
+            hijos = 0;
+            telefono = "";
+            email = "";
+            direccion = "";
+            educacion = "";
+            renta = "";
+            sueldoLiquido = null;
+            enfermedad = false;
+            estado = null;
         }
     }
-    
-    public void buscarPostulacion3(String rut1) throws IOException{
-        PostularDAO postularDAO=new PostularDAO();
+
+    public void buscarPostulacion3(String rut1) throws IOException {
+        PostularDAO postularDAO = new PostularDAO();
         Postulacion p = postularDAO.buscarPostulacion(rut1);
-        if (p != null){
-                rut = p.getRut();
-                comuna = p.getComuna();
-                nombre = p.getNombre();
-                apppaterno = p.getApppaterno();
-                appmaterno = p.getAppmaterno();
-                fecnac = p.getFecnac();
-                sexo = p.getSexo();
-                estadocivil = p.getEstadocivil();
-                hijos = p.getHijos();
-                telefono = p.getTelefono();
-                email = p.getEmail();
-                direccion = p.getDireccion();
-                educacion = p.getEducacion();
-                renta = p.getRenta();
-                sueldoLiquido = p.getSueldoLiquido();
-                enfermedad = p.getEnfermedad();
-                estado = p.getEstado();
-                FacesContext.getCurrentInstance().getExternalContext().redirect("DetallePostulacion.xhtml");
-        }else{
-                rut = "";
-                comuna = null;
-                nombre = "";
-                apppaterno = "";
-                appmaterno = "";
-                fecnac = null;
-                sexo = ' ';
-                estadocivil = ' ';
-                hijos = 0;
-                telefono = "";
-                email = "";
-                direccion = "";
-                educacion = "";
-                renta = "";
-                sueldoLiquido = 0;
-                enfermedad = false;
-                estado = null;
+        if (p != null) {
+            rut = p.getRut();
+            comuna = p.getComuna();
+            nombre = p.getNombre();
+            apppaterno = p.getApppaterno();
+            appmaterno = p.getAppmaterno();
+            fecnac = p.getFecnac();
+            sexo = p.getSexo();
+            estadocivil = p.getEstadocivil();
+            hijos = p.getHijos();
+            telefono = p.getTelefono();
+            email = p.getEmail();
+            direccion = p.getDireccion();
+            educacion = p.getEducacion();
+            renta = p.getRenta();
+            sueldoLiquido = p.getSueldoLiquido();
+            enfermedad = p.getEnfermedad();
+            estado = p.getEstado();
+            FacesContext.getCurrentInstance().getExternalContext().redirect("DetallePostulacion.xhtml");
+        } else {
+            rut = "";
+            nombre = "";
+            apppaterno = "";
+            appmaterno = "";
+            fecnac = null;
+            sexo = ' ';
+            estadocivil = ' ';
+            hijos = 0;
+            telefono = "";
+            email = "";
+            direccion = "";
+            educacion = "";
+            renta = "";
+            sueldoLiquido = null;
+            enfermedad = false;
+            estado = null;
         }
     }
-    
-    public void buscarPostulacion3(String rut1, String estado1, Date inicio, Date fin) throws IOException{
-        PostularDAO postularDAO=new PostularDAO();
+
+    public void buscarPostulacion3(String rut1, String estado1, Date inicio, Date fin) throws IOException {
+        PostularDAO postularDAO = new PostularDAO();
         Postulacion p = postularDAO.buscarPostulacionEjecutivo(rut1, estado1, inicio, fin);
-        if (p != null){
-                rut = p.getRut();
-                comuna = p.getComuna();
-                nombre = p.getNombre();
-                apppaterno = p.getApppaterno();
-                appmaterno = p.getAppmaterno();
-                fecnac = p.getFecnac();
-                sexo = p.getSexo();
-                estadocivil = p.getEstadocivil();
-                hijos = p.getHijos();
-                telefono = p.getTelefono();
-                email = p.getEmail();
-                direccion = p.getDireccion();
-                educacion = p.getEducacion();
-                renta = p.getRenta();
-                sueldoLiquido = p.getSueldoLiquido();
-                enfermedad = p.getEnfermedad();
-                estado = p.getEstado();
-                FacesContext.getCurrentInstance().getExternalContext().redirect("DetallePostulacion.xhtml");
-        }else{
-                rut = "";
-                comuna = null;
-                nombre = "";
-                apppaterno = "";
-                appmaterno = "";
-                fecnac = null;
-                sexo = ' ';
-                estadocivil = ' ';
-                hijos = 0;
-                telefono = "";
-                email = "";
-                direccion = "";
-                educacion = "";
-                renta = "";
-                sueldoLiquido = 0;
-                enfermedad = false;
-                estado = null;
+        if (p != null) {
+            rut = p.getRut();
+            comuna = p.getComuna();
+            nombre = p.getNombre();
+            apppaterno = p.getApppaterno();
+            appmaterno = p.getAppmaterno();
+            fecnac = p.getFecnac();
+            sexo = p.getSexo();
+            estadocivil = p.getEstadocivil();
+            hijos = p.getHijos();
+            telefono = p.getTelefono();
+            email = p.getEmail();
+            direccion = p.getDireccion();
+            educacion = p.getEducacion();
+            renta = p.getRenta();
+            sueldoLiquido = p.getSueldoLiquido();
+            enfermedad = p.getEnfermedad();
+            estado = p.getEstado();
+            FacesContext.getCurrentInstance().getExternalContext().redirect("DetallePostulacion.xhtml");
+        } else {
+            rut = "";
+            nombre = "";
+            apppaterno = "";
+            appmaterno = "";
+            fecnac = null;
+            sexo = ' ';
+            estadocivil = ' ';
+            hijos = 0;
+            telefono = "";
+            email = "";
+            direccion = "";
+            educacion = "";
+            renta = "";
+            sueldoLiquido = null;
+            enfermedad = false;
+            estado = null;
         }
     }
     
-    public List listaPostulaciones(){
-        PostularDAO postularDAO=new PostularDAO();
+    public void consultarEstado() {
+        PostularDAO p = new PostularDAO();
+        Postulacion ps = p.buscarPostulacion(getRut());
+        FacesContext context = FacesContext.getCurrentInstance();
+        switch (ps.getEstado()) {
+            case "Pendiente":
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Postulacion Pendiente", null));
+                break;
+            case "Aprobado":
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Postulacion Aprobada", null));
+                break;
+            case "Rechazado":
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Postulacion Rechazada", null));
+                break;    
+            default:
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "No existen registros", null));
+                break;
+        }
+    }
+
+    public List listaPostulaciones() {
+        PostularDAO postularDAO = new PostularDAO();
         return postularDAO.listaPostulacion();
     }
-    
-    public List listaComuna(){
+
+    public List listaComuna() {
         PostularDAO postular = new PostularDAO();
         return postular.listaComunas();
     }
@@ -401,7 +420,5 @@ public class PostularBean implements Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
-    
-    
+
 }

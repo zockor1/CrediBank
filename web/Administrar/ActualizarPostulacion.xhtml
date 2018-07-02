@@ -17,12 +17,12 @@
                     </h1>
                 </div>
                 <div>
-                    <h:link class="button" value="Atras" outcome="/index.xhtml"/>
+                    <h:link class="button" value="Atras" outcome="Administrar.xhtml"/>
                 </div>
                 <div class="contenedor">
                     <h:panelGrid columns="2" cellpadding="5" class="tabla1">
                         <h:outputLabel style="width: 150px;">RUN *</h:outputLabel>
-                        <h:inputText id="rut" value="#{postularBean.rut}" onkeypress="return valNumber()" maxlength="9"></h:inputText>
+                        <h:inputText id="rut" value="#{postularBean.rut}" onkeypress="return valNumber()" maxlength="9" disabled="true"></h:inputText>
                         <h:outputLabel >Nombre *</h:outputLabel>
                         <h:inputText id="nombre" value="#{postularBean.nombre}" onkeypress="return valLetter()"></h:inputText>
                         <h:outputLabel >Apellido Paterno *</h:outputLabel>
@@ -93,6 +93,11 @@
                         <h:inputText id="sueldo" value="#{postularBean.sueldoLiquido}" onkeypress="return valNumber()" maxlength="4"></h:inputText>
                         <h:outputLabel >Enfermedad crónica</h:outputLabel>
                         <h:selectBooleanCheckbox value="#{postularBean.enfermedad}">  SI </h:selectBooleanCheckbox>
+                          <h:outputLabel>ESTADO</h:outputLabel>
+                     <p:selectOneRadio value="#{postularBean.estado}">
+                            <f:selectItem itemLabel="Aprobar" itemValue="Aprobado" />
+                            <f:selectItem itemLabel="Rechazar" itemValue="Rechazado" /> 
+                        </p:selectOneRadio>
                     </h:panelGrid>
                     <h:panelGrid columns="1" >
                     <h:messages class="alert closebtn"/>

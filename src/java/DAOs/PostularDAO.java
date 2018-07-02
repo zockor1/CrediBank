@@ -63,11 +63,12 @@ public class PostularDAO {
         sesion.close();
         return postulaciones;
     }    
-    public Postulacion buscarPostulacion(String rut){
+    
+    public Postulacion buscarPostulacion(String run){
         Transaction tx=null;
         Session sesion=HibernateUtil.getSessionFactory().openSession();
         tx=sesion.beginTransaction();
-        Query q = sesion.createQuery("from Postulacion where rut="+rut);
+        Query q = sesion.createQuery("from Postulacion p where p.rut = '" + run + "'" );
         Postulacion postulacion = (Postulacion) q.uniqueResult();
         sesion.flush();
         sesion.close();
@@ -98,5 +99,6 @@ public class PostularDAO {
         sesion.flush();
         sesion.close();
         return comunas;
-    }    
+    }
+     
 }

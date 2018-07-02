@@ -13,7 +13,7 @@ body {
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
-  padding-top: 40px;
+  padding-top: 10px;
   padding-bottom: 40px;
   background-image: url("css/images/fondo.jpg");
   background-repeat: no-repeat;
@@ -21,16 +21,12 @@ body {
 }
 
 .form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
+  width: 30%;
+  padding-top: 1px;
   margin: 0 auto;
 }
-.form-signin .checkbox {
-  font-weight: 400;
-}
+
 .form-signin .form-control {
-  position: relative;
   box-sizing: border-box;
   height: auto;
   padding: 10px;
@@ -51,15 +47,49 @@ body {
 }
 
 .logo {
-    width: 60%;
+    width: 50%;
     height: auto;
 }
 
 .titulo {
     color: white;
-    
+    font-size: 30px;   
 }
 
+.titulo2 {
+     position:absolute;
+     top:0;
+     right: 37%;
+     color: white;
+}
+
+.buscar {
+     position: absolute;
+     top: 8;
+     right: 37%;
+}
+
+.tablaListado {
+    font-size: 20px;   
+    margin: 50px;     
+    text-align: center;   
+    border-collapse: collapse; 
+    color: white;
+    border: 3px inset white;
+    background-color: steelblue;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: steelblue;
+    color: white;
+    text-align: center;
+    border: solid;
+    font-size: 11px;
+}
 
 .button {
   background: #3498db;
@@ -68,8 +98,8 @@ body {
   background-image: -ms-linear-gradient(top, #3498db, #2980b9);
   background-image: -o-linear-gradient(top, #3498db, #2980b9);
   background-image: linear-gradient(to bottom, #3498db, #2980b9);
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
+  -webkit-border-radius: 28px;
+  -moz-border-radius: 28px;
   border-radius: 28px;
   font-family: Arial;
   color: #ffffff;
@@ -149,4 +179,26 @@ padding:12px;
     font-size:2em;
     vertical-align:middle;
     border: 3px solid;
+}
+
+.for {
+    border: 3px solid white;
+    background-color: steelblue;
+    background-color: rgba(0, 0 ,0 , .3);
+}
+
+input, textarea, select, button {
+    border: 4px solid white; 
+    -webkit-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    -moz-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    padding: 2px;
+    background: rgba(255,255,255,0.5);
+    margin: 0 0 10px 0;
 }

@@ -3,27 +3,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Listar Postualciones</title>
     </h:head>
     <ui:composition template="/template_login.xhtml">
         <ui:define name="body">
-            <h:outputScript library="js" name="validaciones.js"></h:outputScript>
-            
+            <h:outputScript library="js" name="validaciones.js"></h:outputScript>        
             <h:form id="FormaListar" >
                 <div class="form-signin">
                     <h1>
-                     <h:outputText class="titulo" value="Listado de Solicitudes"></h:outputText>
+                     <h:outputText class="titulo2" value="Listado de Solicitudes"></h:outputText>
                     </h1>
                 </div>
                 <div>
-                <h:link class="button" value="Atras" outcome="/index.xhtml"/>
+                <h:link class="button" value="Atras" outcome="Administrar.xhtml"/>
                 </div>
-                <div class="contenedor" border="1">
+                <div class="tablaListado">
                    <h:form>
-            <h:dataTable value="#{postularBean.listaPostulaciones()}" var="item" border="1">
+                       <h:dataTable value="#{postularBean.listaPostulaciones()}" var="item">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Rut"/>
@@ -44,7 +42,7 @@
                     </h:column>
                     <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Accion"/>
+                        <h:outputText value="Acciones"/>
                     </f:facet>
                     <h:commandButton class="btn btn-lg btn-primary btn-block" value="Ver" action="#{postularBean.buscarPostulacion3(item.rut)}"></h:commandButton>
                     </h:column>
@@ -53,8 +51,7 @@
                     </h:column>
                     <h:column>
                     <h:commandButton class="btn btn-lg btn-primary btn-block" value="Eliminar" action="#{postularBean.eliminarPostulacion2(item.rut)}"></h:commandButton>
-                    </h:column>
-                    
+                    </h:column>          
             </h:dataTable><br/>
         </h:form>
                 </div>

@@ -10,7 +10,7 @@
         <ui:define name="body">
             <h:outputScript library="js" name="validaciones.js"></h:outputScript>
             <h:outputScript library="js" name="calendar_es.js"/>
-            <h:form id="Form" onsubmit="return validarForm()">
+            <h:form id="Form" onsubmit="return validarForm()" class="for" >
                 <div class="form-signin">
                     <h1>
                         <h:outputText class="titulo" value="Formulario de Preaprobación"></h:outputText>
@@ -22,7 +22,7 @@
                 <div class="contenedor">
                     <h:panelGrid columns="2" cellpadding="5" class="tabla1">
                         <h:outputLabel style="width: 150px;">RUN *</h:outputLabel>
-                        <h:inputText id="rut" value="#{postularBean.rut}" onkeypress="return valNumber()" maxlength="9"></h:inputText>
+                        <h:inputText id="rut" value="#{postularBean.rut}" onkeypress="return valIngresoRut()" maxlength="9"></h:inputText>
                         <h:outputLabel >Nombre *</h:outputLabel>
                         <h:inputText id="nombre" value="#{postularBean.nombre}" onkeypress="return valLetter()"></h:inputText>
                         <h:outputLabel >Apellido Paterno *</h:outputLabel>
@@ -72,7 +72,7 @@
                         <h:outputLabel >Comuna *</h:outputLabel>
                         <h:selectOneMenu id="comuna" value="#{postularBean.comuna.idComuna}" style="width: 180px">
                             <f:selectItem itemLabel="Seleccionar Comúna" itemValue="0"></f:selectItem>
-                            <f:selectItems value="#{postularBean.listaComuna()}" var="reg" itemLabel="#{reg.nomComuna}" itemValue="#{reg.idComuna}"></f:selectItems>
+                            <f:selectItems value="#{comunaBean.listaComunas()}" var="reg" itemLabel="#{reg.nomComuna}" itemValue="#{reg.idComuna}"></f:selectItems>
                         </h:selectOneMenu>
                         <h:outputLabel style="height: 29px">Educacion *</h:outputLabel>
                         <h:selectOneMenu id="educacion"  value="#{postularBean.educacion}">

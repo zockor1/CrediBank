@@ -6,6 +6,13 @@ function validarForm() {
     return false;
 }
 
+function validaBuscar(){
+    if (valida_rut()) {
+        return true;
+    }
+    return false;
+}
+
 
 function validarBlancos() {
     //Valida los espacios en blancos obligatorios
@@ -102,7 +109,19 @@ function valida_rut() {
 function valNumber(){
     //Permite solo ingresos de números
     var key = window.event ? event.keyCode : event.which;
-    if ( key < 48 || key > 57 ) {
+    if ( key < 48 || key > 57) {
+        return false;
+    }else {
+        return true;
+    }
+}
+
+function valIngresoRut() {
+       //Permite solo ingresos de números y letra K
+    var key = window.event ? event.keyCode : event.which;
+    if ( event.keyCode === 75 || event.keyCode === 107) {
+        return true;
+    } else  if (key < 48 || key > 57) {
         return false;
     } else {
         return true;

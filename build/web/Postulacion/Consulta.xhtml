@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="/template_login.xhtml">
+        <ui:define name="body">
+            <h:outputScript library="js" name="validaciones.js"></h:outputScript>
+            <h1>
+            <h:outputLabel class="titulo2">Estado de Tu Solicitud</h:outputLabel>
+            </h1>
+            <h:form id="Form" onsubmit="return validaBuscar()">
+                <div class="form-signin">
+                    <h:link class="button" value="Atras" outcome="/index.xhtml"/>
+                </div>
+                <div class="contenedor">
+                    <h:panelGrid columns="2">
+                        <h:outputLabel>Ingresa RUT</h:outputLabel>
+                        <h:inputText id="rut" value="#{postularBean.rut}" onkeypress="return valIngresoRut()" maxlength="9"></h:inputText>                        
+                        <h:outputLabel>Estado:</h:outputLabel>
+                        <h:messages/>
+                    </h:panelGrid>
+                    <h:commandButton class="btn btn-lg btn-primary btn-block" value="Consultar" action="#{postularBean.consultarEstado()}"></h:commandButton>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
