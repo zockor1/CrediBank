@@ -54,7 +54,7 @@ public class PostularBean implements Serializable {
     public void agregarPostulacion() throws IOException {
         Postulacion postulacion = new Postulacion(getRut(), getComuna(), getNombre(), getApppaterno(), getAppmaterno(),
                 getFecnac(), getSexo(), getEstadocivil(), getHijos(), getTelefono(), getEmail(), getDireccion(), getEducacion(),
-                getRenta(), getSueldoLiquido(), getEnfermedad(), getEstado());
+                getRenta(), getSueldoLiquido(), getEnfermedad(), "Pendiente");
         PostularDAO postularDAO = new PostularDAO();
         FacesContext context = FacesContext.getCurrentInstance();
         if (postularDAO.agregaPostulacion(postulacion)) {

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://java.sun.com/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template_login.xhtml">
+        <ui:define name="body">
+            <h:outputScript library="js" name="validaciones.js"></h:outputScript>
+            <h:form id="FormLogin" onsubmit="return validarLogin()" class="form-signin">
+                <h1 align="center">
+                    <h:graphicImage class="logo" url="http://www.cooprogreso.fin.ec/wp-content/uploads/2015/04/ico-interna-creditos1.png" ></h:graphicImage>
+                    <br></br>
+                    <h:outputText class="titulo" value="Login"></h:outputText>
+                </h1>
+                 <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: yellow" infoStyle="color: blue" layout="table"/>
+                    </h:panelGroup>
+                    <h:outputLabel class="sr-only" value="" for="usuario" />
+                    <h:inputText class="form-control" id="usuario" value="#{userBean.us}" />
+                    <h:outputLabel class="sr-only" value="" for="clave" />
+                    <br />
+                    <h:inputSecret class="form-control" id="clave" value="#{userBean.clave}" />
+                <br />
+                <h:commandLink class="btn btn-lg btn-primary btn-block" action="#{userBean.buscarUsuario()}" value="Ingresar" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

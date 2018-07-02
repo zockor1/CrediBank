@@ -98,11 +98,7 @@ function valida_rut() {
 		return true;
 	}
 }
-
-function validarFecha(){
-    
-}
-
+     
 function valNumber(){
     //Permite solo ingresos de números
     var key = window.event ? event.keyCode : event.which;

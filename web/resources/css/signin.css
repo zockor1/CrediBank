@@ -131,24 +131,22 @@ width: 140px !important
 }
 
 /* mensajes */
-.alert {
-    padding: 10px;
-    background-color: #f44336; /* Red */
-    color: white;
-    margin-bottom: 10px;
+.isa_info, .isa_success, .isa_warning, .isa_error {
+margin: 10px 0px;
+padding:12px;
+ 
 }
-
-/* The close button */
-.closebtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 12px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
+.isa_success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
 }
-
-
-/* CSS Label and Input */
+.isa_error {
+    color: #D8000C;
+    background-color: #FFD2D2;
+}
+.isa_info i, .isa_success i, .isa_warning i, .isa_error i {
+    margin:10px 22px;
+    font-size:2em;
+    vertical-align:middle;
+    border: 3px solid;
+}

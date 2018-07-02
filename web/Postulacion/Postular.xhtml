@@ -38,7 +38,8 @@
                                     navigator="true"
                                     locale="es" 
                                     styleClass="calendarClass"
-                                    readonly="true">
+                                    readonly="true"
+                                    maxdate="today">
                             <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
                         </p:calendar>
                         <h:outputLabel >Sexo</h:outputLabel>
@@ -94,8 +95,8 @@
                         <h:outputLabel >Enfermedad crónica</h:outputLabel>
                         <h:selectBooleanCheckbox value="#{postularBean.enfermedad}">  SI </h:selectBooleanCheckbox>
                     </h:panelGrid>
-                    <h:panelGrid columns="1" >
-                    <h:messages class="alert closebtn"/>
+                    <h:panelGrid columns="1">
+                        <h:messages infoClass="isa_success" errorClass="isa_error"/>
                     </h:panelGrid>
                 </div>
                 <div class="form-signin">

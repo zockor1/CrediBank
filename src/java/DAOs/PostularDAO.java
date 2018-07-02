@@ -3,11 +3,7 @@ package DAOs;
 
 import Modelo.Postulacion;
 import Util.HibernateUtil;
-import static java.awt.SystemColor.window;
-import java.sql.SQLException;
 import java.util.List;
-import javax.validation.ConstraintViolationException;
-import org.hibernate.HibernateException;
 import org.hibernate.JDBCException;
 import org.hibernate.Query;
 import org.hibernate.Session;
