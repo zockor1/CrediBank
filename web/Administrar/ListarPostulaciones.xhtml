@@ -42,6 +42,19 @@
                     </f:facet>
                     <h:outputText value="#{item.estado}"/>
                     </h:column>
+                    <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Accion"/>
+                    </f:facet>
+                    <h:commandButton class="btn btn-lg btn-primary btn-block" value="Ver" action="#{postularBean.buscarPostulacion3(item.rut)}"></h:commandButton>
+                    </h:column>
+                    <h:column>
+                    <h:commandButton class="btn btn-lg btn-primary btn-block" value="Editar" action="#{postularBean.buscarPostulacion2(item.rut)}"></h:commandButton>
+                    </h:column>
+                    <h:column>
+                    <h:commandButton class="btn btn-lg btn-primary btn-block" value="Eliminar" action="#{postularBean.eliminarPostulacion2(item.rut)}"></h:commandButton>
+                    </h:column>
+                    
             </h:dataTable><br/>
         </h:form>
                 </div>
