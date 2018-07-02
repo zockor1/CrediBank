@@ -3,6 +3,7 @@ package DAOs;
 
 import Modelo.Postulacion;
 import Util.HibernateUtil;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.JDBCException;
 import org.hibernate.Query;
@@ -71,6 +72,21 @@ public class PostularDAO {
         sesion.flush();
         sesion.close();
         return postulacion;
+    }
+    
+    public Postulacion buscarPostulacionEjecutivo(String rut, String estado, Date inicio, Date fin){
+        try{
+        Transaction tx=null;
+        Session sesion=HibernateUtil.getSessionFactory().openSession();
+        tx=sesion.beginTransaction();
+        Query q = sesion.createQuery("from Postulacion where rut= "+rut+" and estado = "+estado);
+        Postulacion postulacion = (Postulacion) q.uniqueResult();
+        sesion.flush();
+        sesion.close();
+        return postulacion;
+        }catch (JDBCException ex) {
+            return null;
+        }
     }
     
      public List listaComunas(){
