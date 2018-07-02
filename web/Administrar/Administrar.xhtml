@@ -27,16 +27,16 @@
                 <div class="contenedor" border="1">
                     <h:panelGrid columns="2" cellpadding="5" class="tabla1" border="1">
                         <h:outputLabel >RUN *</h:outputLabel>
-                        <h:inputText id="rut" value="#{postularBean.rut}" onkeypress="return valNumber()" maxlength="9"></h:inputText>
+                        <h:inputText id="rut" value="#{rut}" onkeypress="return valNumber()" maxlength="9"></h:inputText>
                         <h:outputLabel >Estado de solicitud *</h:outputLabel>
-                        <h:selectOneMenu id="estado" value="#{postularBean.estadocivil}">
+                        <h:selectOneMenu id="estado" value="#{estado}">
                             <f:selectItem itemLabel="Seleccionar" itemValue="0"></f:selectItem>
-                            <f:selectItem itemLabel="Pendiente" itemValue="1"></f:selectItem>
+                            <f:selectItem itemLabel="Pendiente" itemValue="Pendiente"></f:selectItem>
                             <f:selectItem itemLabel="Aprobado" itemValue="2"></f:selectItem>
                             <f:selectItem itemLabel="Rechazado" itemValue="3"></f:selectItem>
                         </h:selectOneMenu>
                         <h:outputLabel >Desde *</h:outputLabel>
-                        <p:calendar id="fecnin" value="#{postularBean.fecnac}" 
+                        <p:calendar id="fecnin" value="#{ini}" 
                                     size="15" 
                                     showOn="button" 
                                     yearRange="1910:2018"
@@ -47,7 +47,7 @@
                         <f:convertDateTime pattern="dd/MM/yyyy" />
                         </p:calendar>
                         <h:outputLabel >Hasta *</h:outputLabel>
-                        <p:calendar id="fecnfin" value="#{postularBean.fecnac}" 
+                        <p:calendar id="fecnfin" value="#{fin}" 
                                     size="15" 
                                     showOn="button" 
                                     yearRange="1910:2018"
@@ -61,7 +61,7 @@
                 </div>
                 <br></br>
                 <div class="form-signin">
-                    <h:commandButton class="btn btn-lg btn-primary btn-block"  value="Buscar"></h:commandButton>
+                    <h:commandButton class="btn btn-lg btn-primary btn-block"  value="Buscar" action="#{postularBean.buscarPostulacion3(rut,estado,ini,fin)}"></h:commandButton>
                 </div>
                 
                 <h:link class="btn btn-lg btn-primary btn-block" value="Listar Postulaciones" outcome="ListarPostulaciones.xhtml" />

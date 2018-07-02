@@ -213,6 +213,49 @@ public class PostularBean implements Serializable {
         }
     }
     
+    public void buscarPostulacion3(String rut1, String estado1, Date inicio, Date fin) throws IOException{
+        PostularDAO postularDAO=new PostularDAO();
+        Postulacion p = postularDAO.buscarPostulacionEjecutivo(rut1, estado1, inicio, fin);
+        if (p != null){
+                rut = p.getRut();
+                comuna = p.getComuna();
+                nombre = p.getNombre();
+                apppaterno = p.getApppaterno();
+                appmaterno = p.getAppmaterno();
+                fecnac = p.getFecnac();
+                sexo = p.getSexo();
+                estadocivil = p.getEstadocivil();
+                hijos = p.getHijos();
+                telefono = p.getTelefono();
+                email = p.getEmail();
+                direccion = p.getDireccion();
+                educacion = p.getEducacion();
+                renta = p.getRenta();
+                sueldoLiquido = p.getSueldoLiquido();
+                enfermedad = p.getEnfermedad();
+                estado = p.getEstado();
+                FacesContext.getCurrentInstance().getExternalContext().redirect("DetallePostulacion.xhtml");
+        }else{
+                rut = "";
+                comuna = null;
+                nombre = "";
+                apppaterno = "";
+                appmaterno = "";
+                fecnac = null;
+                sexo = ' ';
+                estadocivil = ' ';
+                hijos = 0;
+                telefono = "";
+                email = "";
+                direccion = "";
+                educacion = "";
+                renta = "";
+                sueldoLiquido = 0;
+                enfermedad = false;
+                estado = null;
+        }
+    }
+    
     public List listaPostulaciones(){
         PostularDAO postularDAO=new PostularDAO();
         return postularDAO.listaPostulacion();
