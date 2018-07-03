@@ -65,7 +65,7 @@ public class PostularBean implements Serializable {
             //limpiarCampos();
             //FacesContext.getCurrentInstance().getExternalContext().redirect("../index.xhtml");
         } else {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ya existe una Postulacion del Cliente :" + postulacion.getRut(), null));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ha ocurrido un error al proceso la Solicitud", null));
         }
     }
 
@@ -74,9 +74,14 @@ public class PostularBean implements Serializable {
                 getFecnac(), getSexo(), getEstadocivil(), getHijos(), getTelefono(), getEmail(), getDireccion(), getEducacion(),
                  getRenta(), getSueldoLiquido(), getEnfermedad(), getEstado());
         PostularDAO postularDAO = new PostularDAO();
-        postularDAO.actualizarPostulacion(postulacion);
-        FacesContext.getCurrentInstance().getExternalContext().redirect("ActualizarPostulacion.xhtml");
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (postularDAO.actualizarPostulacion(postulacion)) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro Actualizado con Exito!", null));
+        }else{   
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Ocurrio un problema con el proceso...", null));
+        }
     }
+        
 
     public void eliminarPostulacion() {
         Postulacion postulacion = new Postulacion(getRut());
@@ -261,19 +266,24 @@ public class PostularBean implements Serializable {
         PostularDAO p = new PostularDAO();
         Postulacion ps = p.buscarPostulacion(getRut());
         FacesContext context = FacesContext.getCurrentInstance();
-        switch (ps.getEstado()) {
-            case "Pendiente":
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Postulacion Pendiente", null));
-                break;
-            case "Aprobado":
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Postulacion Aprobada", null));
-                break;
-            case "Rechazado":
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Postulacion Rechazada", null));
-                break;    
-            default:
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "No existen registros", null));
-                break;
+        if (ps != null) {
+            switch (ps.getEstado()) {
+                case "Pendiente":
+                    context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Postulacion Pendiente", null));
+                    break;
+                case "Aprobado":
+                    context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Postulacion Aprobada", null));
+                    break;
+                case "Rechazado":
+                    context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Postulacion Rechazada", null));
+                    break;
+                default:
+                    context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "No existen registros", null));
+                    break;
+            }
+
+        }else{
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "No existen registros", null));
         }
     }
 

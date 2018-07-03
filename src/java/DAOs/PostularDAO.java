@@ -33,14 +33,19 @@ public class PostularDAO {
     }
 
                
-    public void actualizarPostulacion(Postulacion postulacion){
-        Transaction tx=null;
-        Session sesion=HibernateUtil.getSessionFactory().openSession();
-        tx=sesion.beginTransaction();
-        sesion.update(postulacion);
-        sesion.getTransaction().commit();
-        sesion.flush();
-        sesion.close();
+    public boolean actualizarPostulacion(Postulacion postulacion) {
+        try {
+            Transaction tx = null;
+            Session sesion = HibernateUtil.getSessionFactory().openSession();
+            tx = sesion.beginTransaction();
+            sesion.update(postulacion);
+            sesion.getTransaction().commit();
+            sesion.flush();
+            sesion.close();
+            return true;
+        } catch (JDBCException ex) {
+            return false;
+        }
     }
     
     public void eliminarPostulacion(Postulacion postulacion){
