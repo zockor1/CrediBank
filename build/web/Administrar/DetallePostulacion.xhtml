@@ -11,24 +11,24 @@
             <h:outputScript library="js" name="validaciones.js"></h:outputScript>
             <h:outputScript library="js" name="calendar_es.js"/>
             <h:form id="Form" onsubmit="return validarForm()">
+                 <div>
+                <h:link class="button" value="Atras" outcome="Administrar.xhtml"/>
+                </div>
                 <div class="form-signin">
                     <h1>
-                        <h:outputText class="titulo" value="Formulario de Actualizacion"></h:outputText>
+                        <h:outputText class="titulo" value="Detalle De Postulacion"></h:outputText>
                     </h1>
-                </div>
-                <div>
-                    <h:link class="button" value="Atras" outcome="Administrar.xhtml"/>
                 </div>
                 <div class="contenedor">
                     <h:panelGrid columns="2" cellpadding="5" class="tabla1">
                         <h:outputLabel style="width: 150px;">RUN *</h:outputLabel>
-                        <h:inputText id="rut" value="#{postularBean.rut}" onkeypress="return valNumber()" maxlength="9" disabled="true"></h:inputText>
+                        <h:outputText id="rut" value="#{postularBean.rut}"/>
                         <h:outputLabel >Nombre *</h:outputLabel>
-                        <h:inputText id="nombre" value="#{postularBean.nombre}" onkeypress="return valLetter()"></h:inputText>
+                        <h:outputText id="nombre" value="#{postularBean.nombre}" ></h:outputText>
                         <h:outputLabel >Apellido Paterno *</h:outputLabel>
-                        <h:inputText id="apellP" value="#{postularBean.apppaterno}" onkeypress="return valLetter()"></h:inputText>
+                        <h:outputText id="apellP" value="#{postularBean.apppaterno}"></h:outputText>
                         <h:outputLabel >Apellido Materno</h:outputLabel>
-                        <h:inputText value="#{postularBean.appmaterno}" onkeypress="return valLetter()"></h:inputText>
+                        <h:outputText value="#{postularBean.appmaterno}"></h:outputText>
                         <h:outputLabel >Fecha Nacimiento *</h:outputLabel>
                         <p:calendar id="fecnac" value="#{postularBean.fecnac}" 
                                     size="15" 
@@ -38,16 +38,18 @@
                                     navigator="true"
                                     locale="es" 
                                     styleClass="calendarClass"
-                                    readonly="true">
+                                    readonly="true"
+                                    disabled="true"
+                                    >
                             <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
                         </p:calendar>
                         <h:outputLabel >Sexo</h:outputLabel>
-                        <p:selectOneRadio value="#{postularBean.sexo}">
+                        <p:selectOneRadio value="#{postularBean.sexo}" disabled="true">
                             <f:selectItem itemLabel="M" itemValue="M" />
                             <f:selectItem itemLabel="F" itemValue="F" /> 
                         </p:selectOneRadio>
                         <h:outputLabel >Estado Civil *</h:outputLabel>
-                        <h:selectOneMenu id="estado" value="#{postularBean.estadocivil}">
+                        <h:selectOneMenu id="estado" value="#{postularBean.estadocivil}" disabled="true">
                             <f:selectItem itemLabel="Seleccionar Estado Civil" itemValue="1"></f:selectItem>
                             <f:selectItem itemLabel="Soltero" itemValue="2"></f:selectItem>
                             <f:selectItem itemLabel="Casado" itemValue="3"></f:selectItem>
@@ -55,7 +57,7 @@
                             <f:selectItem itemLabel="Divorciado" itemValue="5"></f:selectItem>
                         </h:selectOneMenu>                 
                         <h:outputLabel >Hijos</h:outputLabel>
-                        <h:selectBooleanCheckbox id="hijosCheck">
+                        <h:selectBooleanCheckbox id="hijosCheck" disabled="true">
                             <f:ajax event="click" listener="#{postularBean.toggle}" render="spinner"></f:ajax>  
                         </h:selectBooleanCheckbox>                        
                         <h:outputLabel >Cantidad</h:outputLabel>
@@ -63,18 +65,18 @@
                     </h:panelGrid>
                     <h:panelGrid columns="2" cellpadding="5" class="tabla2">
                         <h:outputLabel >Teléfono *</h:outputLabel>
-                        <h:inputText id="telefono" value="#{postularBean.telefono}" onkeypress="return valNumber()"></h:inputText>
+                        <h:outputText id="telefono" value="#{postularBean.telefono}"></h:outputText>
                         <h:outputLabel >E-mail *</h:outputLabel>
-                        <h:inputText id="email" value="#{postularBean.email}"></h:inputText>
+                        <h:outputText id="email" value="#{postularBean.email}"></h:outputText>
                         <h:outputLabel>Dirección *</h:outputLabel>
-                        <h:inputText id="direc" value="#{postularBean.direccion}"></h:inputText>
+                        <h:outputText id="direc" value="#{postularBean.direccion}"></h:outputText>
                         <h:outputLabel >Comuna *</h:outputLabel>
-                        <h:selectOneMenu id="comuna" value="#{idComuna}" style="width: 180px">
+                        <h:selectOneMenu id="comuna" value="#{postularBean.comuna.idComuna}" style="width: 180px" disabled="true">
                             <f:selectItem itemLabel="Seleccionar Comúna" itemValue="0"></f:selectItem>
                             <f:selectItems value="#{postularBean.listaComuna()}" var="reg" itemLabel="#{reg.nomComuna}" itemValue="#{reg.idComuna}"></f:selectItems>
                         </h:selectOneMenu>
                         <h:outputLabel style="height: 29px">Educacion *</h:outputLabel>
-                        <h:selectOneMenu id="educacion"  value="#{postularBean.educacion}">
+                        <h:selectOneMenu id="educacion"  value="#{postularBean.educacion}" disabled="true">
                             <f:selectItem itemLabel="Seleccionar Educación" itemValue="1"></f:selectItem>
                             <f:selectItem itemLabel="Profesional" itemValue="2"></f:selectItem>
                             <f:selectItem itemLabel="Técnico" itemValue="3"></f:selectItem>
@@ -83,32 +85,27 @@
                             <f:selectItem itemLabel="No Posee" itemValue="6"></f:selectItem>
                         </h:selectOneMenu>
                         <h:outputLabel style="height: 32px" >Renta *</h:outputLabel>
-                        <h:selectOneMenu id="renta" value="#{postularBean.renta}">
+                        <h:selectOneMenu id="renta" value="#{postularBean.renta}" disabled="true">
                             <f:selectItem itemLabel="Seleccionar Tipo Renta" itemValue="1"></f:selectItem>
                             <f:selectItem itemLabel="Fija" itemValue="2"></f:selectItem>
                             <f:selectItem itemLabel="Variable" itemValue="3"></f:selectItem>
                             <f:selectItem itemLabel="Honorarios" itemValue="4"></f:selectItem>
                         </h:selectOneMenu>  
                         <h:outputLabel >Sueldo Liquido *</h:outputLabel>
-                        <h:inputText id="sueldo" value="#{postularBean.sueldoLiquido}" onkeypress="return valNumber()" maxlength="4"></h:inputText>
+                        <h:outputText id="sueldo" value="#{postularBean.sueldoLiquido}"></h:outputText>
                         <h:outputLabel >Enfermedad crónica</h:outputLabel>
-                        <h:selectBooleanCheckbox value="#{postularBean.enfermedad}">  SI </h:selectBooleanCheckbox>
-                          <h:outputLabel>ESTADO</h:outputLabel>
-                        <p:selectOneRadio value="#{postularBean.estado}">
-                            <f:selectItem itemLabel="Aprobar" itemValue="Aprobado" />
-                            <f:selectItem itemLabel="Rechazar" itemValue="Rechazado" /> 
-                        </p:selectOneRadio>
+                        <h:selectBooleanCheckbox value="#{postularBean.enfermedad}" disabled="true">  SI </h:selectBooleanCheckbox>
                     </h:panelGrid>
                     <h:panelGrid columns="1" >
                     <h:messages class="alert closebtn"/>
                     </h:panelGrid>
                 </div>
                 <div class="form-signin">
-                    <h:commandButton class="btn btn-lg btn-primary btn-block" value="Actualizar" action="#{postularBean.actualizarPostulacion()}">   
-                    </h:commandButton>
+                    <h:link class="button" value="Atras" outcome="/index.xhtml"/>
                 </div>
             </h:form>
         </ui:define>
     </ui:composition>
 </html>
+
 

@@ -49,6 +49,24 @@ public class UserBean implements Serializable {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("Registrar.xhtml");
         }
     }
+    
+    public String returnUser() throws IOException
+    {
+        if (this.nombre != null) {
+            return this.nombre;
+        }else
+        {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("Login.xhtml");
+            return null;
+        }
+    }
+    
+    public void cerrarSesion() throws IOException
+    {
+        this.nombre = null;
+        FacesContext.getCurrentInstance().getExternalContext().redirect("Login.xhtml");
+        
+    }
 
     public String getUs() {
         return us;
