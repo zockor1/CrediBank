@@ -31,34 +31,36 @@
                             <f:selectItem itemLabel="Rechazado" itemValue="Rechazado"></f:selectItem>
                         </h:selectOneMenu>
                         <h:outputLabel >Desde *</h:outputLabel>
-                        <p:calendar id="fecnin" value="#{ini}" 
-                                    size="9" 
+                        <p:calendar id="fecnin" value="#{postularBean.inicio}" 
+                                    size="15" 
                                     showOn="button" 
                                     yearRange="1910:2018"
-                                    placeholder="dd/mm/yyyy"
                                     maxlength="10"
                                     navigator="true"
-                                    locale="es"
-                                    readonly="true">
+                                    locale="es" 
+                                    styleClass="calendarClass"
+                                    readonly="true"
+                                    maxdate="today">
                             <f:convertDateTime pattern="dd/MM/yyyy" />
                         </p:calendar>
                         <h:outputLabel >Hasta *</h:outputLabel>
-                        <p:calendar id="fecnfin" value="#{fin}" 
-                                    size="9" 
+                        <p:calendar id="fecnfin" value="#{postularBean.fin}" 
+                                    size="15" 
                                     showOn="button" 
                                     yearRange="1910:2018"
-                                    placeholder="dd/mm/yyyy"
                                     maxlength="10"
                                     navigator="true"
-                                    locale="es"
-                                    readonly="true">
+                                    locale="es" 
+                                    styleClass="calendarClass"
+                                    readonly="true"
+                                    maxdate="today">
                             <f:convertDateTime pattern="dd/MM/yyyy" />
                         </p:calendar>
                     </h:panelGrid>
                 </div>
                 <br></br>
                 <div class="form-signin">
-                    <h:commandButton class="btn btn-lg btn-primary btn-block"  value="Buscar" action="#{postularBean.buscarPostulacion3(rut,estado,ini,fin)}"></h:commandButton>
+                    <h:commandButton class="btn btn-lg btn-primary btn-block"  value="Buscar" action="#{postularBean.buscarPostulacion4(rut,estado,ini,fin)}"></h:commandButton>
                     <h:link class="btn btn-lg btn-primary btn-block" value="Listar Todo" outcome="ListarPostulaciones.xhtml" />
                     <h:commandButton class="btn btn-lg btn-primary btn-block"  value="Cerrar Sesion" action="#{userBean.cerrarSesion()}"></h:commandButton>
                 </div>     

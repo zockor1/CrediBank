@@ -37,6 +37,8 @@ public class PostularBean implements Serializable {
     private Short sueldoLiquido;
     private Boolean enfermedad;
     private String estado;
+    private Date inicio = new Date();
+    private Date fin = new Date();
 
     //Habilitar/Desahibilitar ingreso de Hijos
     private boolean enabled;
@@ -213,9 +215,9 @@ public class PostularBean implements Serializable {
         }
     }
 
-    public void buscarPostulacion3(String rut1, String estado1, Date inicio, Date fin) throws IOException {
+    public void buscarPostulacion4(String rut1, String estado1, Date inicio, Date fin) throws IOException {
         PostularDAO postularDAO = new PostularDAO();
-        Postulacion p = postularDAO.buscarPostulacionEjecutivo(rut1, estado1, inicio, fin);
+        Postulacion p = postularDAO.buscarPostulacionEjecutivo(rut1, estado1, getInicio(), getFin());
         if (p != null) {
             rut = p.getRut();
             comuna = p.getComuna();
@@ -320,6 +322,23 @@ public class PostularBean implements Serializable {
     public Short getHijos() {
         return hijos;
     }
+
+    public Date getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(Date inicio) {
+        this.inicio = inicio;
+    }
+
+    public Date getFin() {
+        return fin;
+    }
+
+    public void setFin(Date fin) {
+        this.fin = fin;
+    }
+    
 
     public String getTelefono() {
         return telefono;

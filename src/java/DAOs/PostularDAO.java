@@ -80,7 +80,7 @@ public class PostularDAO {
         Transaction tx=null;
         Session sesion=HibernateUtil.getSessionFactory().openSession();
         tx=sesion.beginTransaction();
-        Query q = sesion.createQuery("from Postulacion where rut= "+rut+" and estado = "+estado);
+        Query q = sesion.createQuery("from Postulacion where rut= '"+rut+"' and estado = '"+estado+ "' and fecha_ingreso between '"+ inicio+ "' and '"+ fin+"'");
         Postulacion postulacion = (Postulacion) q.uniqueResult();
         sesion.flush();
         sesion.close();
